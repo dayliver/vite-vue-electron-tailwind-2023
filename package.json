@@ -1,0 +1,49 @@
+{
+  "name": "vite-vue-electron-tailwind-2023",
+  "private": true,
+  "version": "0.0.0",
+  "main": "electron/electron.js",
+  "scripts": {
+    "dev": "concurrently -k \"cross-env BROWSER=none yarn vite:dev\" \"yarn electron\"",
+    "build": "yarn build:for:electron && yarn electron:builder",
+    "vite:dev": "vite",
+    "vite:build": "vite build",
+    "vite:preview": "vite preview",
+    "electron": "wait-on tcp:5173 && cross-env IS_DEV=true electron .",
+    "electron:pack": "electron-builder --dir",
+    "electron:builder": "electron-builder",
+    "build:for:electron": "cross-env ELECTRON=true vite build"
+  },
+  "build": {
+    "appId": "com.myurl.myapp",
+    "productName": "My App",
+    "copyright": "Copyright © 2023 ${author}",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "dist_electron"
+    }
+  },
+  "dependencies": {
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "concurrently": "^8.2.1",
+    "cross-env": "^7.0.3",
+    "electron": "^26.1.0",
+    "electron-builder": "^24.6.3",
+    "vite": "^4.4.5",
+    "wait-on": "^7.0.1"
+  }
+}
