@@ -1,7 +1,5 @@
 const path = require('path');
 const { app, BrowserWindow, ipcMain } = require('electron');
-// import { app, BrowserWindow } from 'electron'
-// import path from 'path'
 
 const isDev = process.env.IS_DEV == "true" ? true : false;
 
@@ -14,13 +12,13 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
+      contentSecurityPolicy: "default-src 'self'; script-src 'self'; style-src 'self';",
     },
   });
 
   ipcMain.handle('ping', () => 'pong')
 
   // and load the index.html of the app.
-  // win.loadFile("index.html");
   mainWindow.loadURL(
     isDev
       ? 'http://localhost:5173'

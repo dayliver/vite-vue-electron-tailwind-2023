@@ -39,10 +39,13 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
+    "autoprefixer": "^10.4.15",
     "concurrently": "^8.2.1",
     "cross-env": "^7.0.3",
     "electron": "^26.1.0",
     "electron-builder": "^24.6.3",
+    "postcss": "^8.4.29",
+    "tailwindcss": "^3.3.3",
     "vite": "^4.4.5",
     "wait-on": "^7.0.1"
   }
